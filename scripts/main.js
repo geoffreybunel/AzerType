@@ -4,7 +4,7 @@
  * 
  *********************************************************************************/
 
-lancerJeu()
+lancerJeu();
 
 // J'ai mis ce code en commentaire, nous pourrons le récupérer lorsque nous en auront besoin :
 
