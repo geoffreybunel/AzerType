@@ -40,6 +40,32 @@ function afficherEmail(nom, email, score) {
 }
 
 /**
+ * Cette fonction prend un nom en paramètre et valide qu'il est au bon format
+ * ici : deux caractères au minimum
+ * @param {string} nom 
+ * @return {boolean}
+ */
+function validerNom(nom) {
+    if (nom.length >= 2) {
+        return true
+    }
+    return false
+}
+
+/**
+ * Cette fonction prend un email en paramètre et valide qu'il est au bon format. 
+ * @param {string} email 
+ * @return {boolean}
+ */
+function validerEmail(email) {
+    let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
+    if (emailRegExp.test(email)) {
+        return true
+    }
+    return false
+}
+
+/**
  * Cette fonction lance le jeu. 
  * Elle demande à l'utilisateur de choisir entre "mots" et "phrases" et lance la boucle de jeu correspondante
  */
@@ -88,19 +114,24 @@ function lancerJeu() {
         })
     }
 
-    let form = document.querySelector("form");
+    // Gestion de l'événement submit sur le formulaire de partage. 
+    let form = document.querySelector("form")
     form.addEventListener("submit", (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
-        let baliseNom = document.getElementById("nom");
-        let nom = baliseNom.value;
+        let baliseNom = document.getElementById("nom")
+        let nom = baliseNom.value
 
-        let baliseEmail = document.getElementById("email");
-        let email = baliseEmail.value;
+        let baliseEmail = document.getElementById("email")
+        let email = baliseEmail.value
 
-        let scoreEmail = `${score} / ${i}`;
-
-        afficherEmail(nom, email, scoreEmail);
+        if (validerNom(nom) && validerEmail(email)) {
+            let scoreEmail = `${score} / ${i}`
+            afficherEmail(nom, email, scoreEmail)
+        } else {
+            console.log("Erreur")
+        }
+        
     })
 
     afficherResultat(score, i)
