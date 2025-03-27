@@ -5,7 +5,8 @@
  * 
  *********************************************************************************/
 
-
+let nom = document.getElementById("nom");
+let email = document.getElementById("email");
 /**
  * Cette fonction affiche la popup pour partager son score. 
  */
@@ -24,6 +25,8 @@ function cacherPopup() {
     // La popup est masquée par défaut (display:none), supprimer la classe "active"
     // va rétablir cet affichage par défaut. 
     popupBackground.classList.remove("active")
+    nom.value = '';
+    email.value = '';
 }
 
 
@@ -49,4 +52,5 @@ function initAddEventListenerPopup() {
             cacherPopup()
         }
     })
+
 }
